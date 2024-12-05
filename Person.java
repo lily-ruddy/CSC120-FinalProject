@@ -22,10 +22,16 @@ public class Person {
         return this.room;
     }
 
-    // Use Item
-    // public void useItem(){
+    public void setRoom(Room room){
+        this.room = room;
+    }
 
-    // }
+    // Methods:
+    public void grabItem(Item item){
+        if(this.inventory.contains(item)){
+            System.out.println();
+        }
+    }
 
     
 
