@@ -20,11 +20,16 @@ public class Main{
         //List<String> nounsList = Arrays.asList("window");
         //List<String> adjectiveList = Arrays.asList("brown", "black");
         
-
-        /* Initializing Classes */
+        // Initializing Classes:
+        /* Rooms */
         Room mainBedroom = new Room("Main Bedroom", "Looking around you notice that the bedroom is very sparse. There's a metal framed bed, a desk with a single candle lighting up the room, and a wooden chair. A large window takes up most of the whole wall. There's two sturdy doors leading out; one that is white and the other is black.", false);
         Room mainBathroom = new Room("Main Bathroom", "This is a simple bathroom. ", false);
         Room hallway = new Room("Hallway", "You step into a long hallway with six doors.", false);
+        
+        /* Objects */
+        Item deskPaper = new Item("Paper", "A piece of paper found on the desk of the Main Bedroom. 'ESCAPE!' is written on the paper in some special dark purple ink.", false);
+
+        /* Other */
         Person user = new Person(inventory, mainBedroom);
 
         // START OF THE GAME:
@@ -67,8 +72,9 @@ public class Main{
                     System.out.println("You reach inside your pockets to find them empty. :(");
                 
                 } else{
-                    System.out.println("----Inventory---- \n");
+                    System.out.println("----Inventory----");
                     for(String i:inventory){
+                        System.out.print("+ ");
                         System.out.println(i);
                     }
                 }
@@ -114,14 +120,14 @@ public class Main{
                 /* Go to desk */
                 if(actionsList.contains(userWords[0]) && userResponse.contains("desk")){
                     System.out.println("The desk looks pretty standard with no extra compartments. There is a single sheet of blank paper atop the desk, but as you move closer you notice lettering in dark purplpe ink slowly appear: ESCAPE!");
+                    deskPaper.setAccess(); // allows user to pick up the paper
                 }
 
                 /* Add paper to inventory */
-                if(actionsList.contains(userWords[0]) && userResponse.contains("paper")){
-                    // System.out.println("please I'm so confused");
-                    // user.getInventory().add("paper");
-                    // System.out.println("papoef");
+                if(actionsList.contains(userWords[0]) && userResponse.contains("paper") && deskPaper.getAccess()){
                     System.out.println("This is going to be a method from the person class where they check if its not already in their inventory and then add it to their inventory");
+                    user.getInventory().add("Paper");
+                    System.out.println("Putting the piece of paper in pockets...");
                 }
 
                 /* Go through black door to main bathroom */

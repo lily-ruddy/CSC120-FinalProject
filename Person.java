@@ -27,11 +27,11 @@ public class Person {
     }
 
     // Methods:
-    public void grabItem(Item item){
-        if(this.inventory.contains(item)){
-            System.out.println();
-        }
-    }
+    // public void grabItem(Item item){
+    //     if(this.inventory.contains(item)){
+    //         System.out.println();
+    //     }
+    // }
 
     
 
