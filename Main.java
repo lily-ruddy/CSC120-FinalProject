@@ -16,19 +16,18 @@ public class Main{
         // Parsing User's Input
         Scanner userInput = new Scanner(System.in); // user's input
         String userResponse = ""; // stores user's response
-        List<String> actionsList = Arrays.asList("look", "look around", "stop", "go", "open", "pick", "grab"); // all the possible one word actions that a user can do
-        //List<String> nounsList = Arrays.asList("window");
-        //List<String> adjectiveList = Arrays.asList("brown", "black");
+        List<String> actionsList = Arrays.asList("look", "look around", "stop", "go", "open", "pick", "grab", "inventory", "location"); // all the possible one word actions that a user can do
         
         // Initializing Classes:
         /* Rooms */
         Room mainBedroom = new Room("Main Bedroom", "Looking around you notice that the bedroom is very sparse. There's a metal framed bed, a desk with a single candle lighting up the room, and a wooden chair. A large window takes up most of the whole wall. There's two sturdy doors leading out; one that is white and the other is black.", false);
-        Room mainBathroom = new Room("Main Bathroom", "This is a simple bathroom. ", false);
+        Room mainBathroom = new Room("Main Bathroom", "Observing the bathroom you see a sleak bathtub, a modest sink and toilet. There's a mirror above the sink. You don't recognize the reflection staring back at you. You are confused. There lays a single tube of toothpaste and a toothbrush innocently laying besides the sink. ", false);
         Room hallway = new Room("Hallway", "You step into a long hallway with six doors.", false);
         
         /* Objects */
         Item deskPaper = new Item("Paper", "A piece of paper found on the desk of the Main Bedroom. 'ESCAPE!' is written on the paper in some special dark purple ink.", false);
-
+        Item toothBrush = new Item("Toothbrush", "It's an orange toothbrush that appears to be unused.", false);
+        Item toothPaste = new Item("Toothpaste", "A drugstore brand toothpaste: 6/10 DENTISTS AGREE THAT THIS IS IN FACT TOOTHPASTE", false);
         /* Other */
         Person user = new Person(inventory, mainBedroom);
 
@@ -48,13 +47,7 @@ public class Main{
             /* Parsing user's response */
             userResponse = userInput.nextLine().toLowerCase(); // converts all the actions to lowervase
             String[] userWords = userResponse.split(" "); // spli
-            
-            // for(String i:userWords){
-            //     if(actionsList.contains(i)){
-            //         System.out.println(i);
-            //     }
-            // }
-
+        
             // Basic Commands in Every Room:
             /* Gives user their room's description */
             if(userResponse.equals("look around") || userResponse.equals("look")){
@@ -80,34 +73,10 @@ public class Main{
                 }
             }
 
-            // NEEDS WORK
             /* Default response to giving wrong command */
-            // if(!actionsList.contains(userResponse)){ // first checks if valid action verb
-                
-            //     /* if only 1 word */
-            //     if(userWords.length == 1){
-            //         System.out.println("Sorry, there's no command for \"" + userResponse + "\". ");
-
-            //     } else{ /* checks if last word is in the nouns list */
-
-            //         /* The last word of the user is in the noun list */
-            //         if(nounsList.contains(userWords[userWords.length-1])){
-                        
-            //             // PROBLEM NOT EVERYTHING IS GOING TO HAVE AN ADJECTIVE
-            //             /* second to last word of the user is in the adj list */
-            //             if(adjectiveList.contains(userWords[userWords.length-2])){
-            //                 System.out.println(":)");
-            //             } else{
-            //                 System.out.println("Sorry, there's no command for \"" + userResponse + "\". ");
-            //                 System.out.println("adj");
-            //             }
-
-            //         } else{ /* last word is in the noun list */
-            //             System.out.println("Sorry, there's no command for \"" + userResponse + "\". ");
-            //             System.out.println("noun");
-            //         }
-            //     }
-            // }
+            if(!actionsList.contains(userWords[0])){
+                System.out.println("Sorry, there's no command for \"" + userResponse + "\". ");
+            } 
 
             // Inside Main Bedroom:
             if(user.getRoom().getName().equals("Main Bedroom")){
@@ -120,7 +89,7 @@ public class Main{
                 /* Go to desk */
                 if(actionsList.contains(userWords[0]) && userResponse.contains("desk")){
                     System.out.println("The desk looks pretty standard with no extra compartments. There is a single sheet of blank paper atop the desk, but as you move closer you notice lettering in dark purplpe ink slowly appear: ESCAPE!");
-                    deskPaper.setAccess(); // allows user to pick up the paper
+                    deskPaper.setAccess(true); // allows user to pick up the paper
                 }
 
                 /* Add paper to inventory */
@@ -147,11 +116,14 @@ public class Main{
                     System.out.println(hallway.getDescription());
                     continue;
                 }
+
             }
 
             // Inside Main Bathroom:
             if(user.getRoom().getName().equals("Main Bathroom")){
-                System.out.println("In bathroom :)");
+                /* Grants access to toothbrush and toothpaste */
+                toothBrush.setAccess(true);
+                toothPaste.setAccess(true);
 
                 /* Returning back to main bedroom */
                 if(actionsList.contains(userWords[0]) && userResponse.contains("black") && userResponse.contains("door")){
@@ -161,6 +133,20 @@ public class Main{
                     System.out.println(mainBedroom.getDescription());
                     continue;
                 }
+
+                // I NEED TO HAVE A METHOD THAT CHECKS TO SEE IF I CAN ADD THE ITEM SO I DON"T NEED TO WRITE REPEATING CODE
+                // FUTURE TASK
+                /* Grab items */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("toothbrush") && toothBrush.getAccess()){
+                    user.getInventory().add("Toothbrush");
+                    System.out.println("Putting the toothbrush in pockets...");
+                }
+
+                if(actionsList.contains(userWords[0]) && userResponse.contains("toothpaste") && toothPaste.getAccess()){
+                    user.getInventory().add("Toothpaste");
+                    System.out.println("Putting the toothpaste in pockets...");
+                }
+                
             }
             
 

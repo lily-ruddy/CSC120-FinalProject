@@ -3,7 +3,7 @@ public class Item {
     // Attributes:
     private String name; // name of the item 
     private String description; // description of the item
-    private boolean access = false; // whether the user can access the item
+    private boolean access = false; // whether the user can access the item, default to no
 
     // Constructor
     public Item(String name, String description, boolean access){
@@ -26,7 +26,7 @@ public class Item {
         return this.access;
     }
 
-    public void setAccess(){
-        access = true; // unlocks the room
+    public void setAccess(boolean a){
+        access = a; // grants / denys access to item
     }
 }
