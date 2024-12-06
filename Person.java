@@ -27,12 +27,22 @@ public class Person {
     }
 
     // Methods:
-    // public void grabItem(Item item){
-    //     if(this.inventory.contains(item)){
-    //         System.out.println();
-    //     }
-    // }
+    /* Adds item to the user's inventory */
+    public void grabItem(Item item){
+        if(this.inventory.contains(item.getName())){
+            System.out.println("This is already ");
+        }
+    }
 
+    /* Removes item from the user's inventory */
+    public void dropItem(Item item){
+
+    }
+
+    /* Uses the item */
+    public void userItem(Item item){
+
+    }
     
 
 }
