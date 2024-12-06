@@ -32,7 +32,7 @@ public class Main{
         /* Sub Rooms */ // areas found inside the Rooms
         SubRoom desk = new SubRoom("desk", mainBedroom, "The desk looks pretty standard with no extra compartments. There is a single sheet of blank paper atop the desk, but as you move closer you notice lettering in dark purplpe ink slowly appear: ESCAPE!", "The desk looks pretty standard with no extra compartments.", false, false, deskPaper, null);
         SubRoom window = new SubRoom("window", mainBedroom ,"You move closer to the window and the scenery becomes clearer before you. You realize that you are several thousands of feet above the ground with miles and miles of a snowy landscape as far as the eye can see. ", null, false, true, null, null);
-        //List<SubRoom> subRoomsList = Arrays.asList(window, desk);
+        List<String> mbedroomSub = Arrays.asList("window", "desk");
 
         /* Other */
         Person user = new Person(inventory, mainBedroom);
@@ -94,7 +94,12 @@ public class Main{
             // Inside Main Bedroom:
             if(user.getRoom().getName().equals("Main Bedroom")){
 
-            
+                // IDENTIFY WHICH INDEX THAT MATCHES AND THEN USE IT!!!!! YAYAYAYAYYAYA
+                System.out.println();
+                if(actionsList.contains(userWords[0]) && mbedroomSub.contains(userWords[userWords.length-1])){
+                    System.out.println("still confused");
+                    
+                }
                 // for(SubRoom i:subRoomsList){
                 //     if(actionsList.contains(userWords[0]) && userResponse.contains(i.getName()) && i.getLocked() == false){
                 //         System.out.println(i.getDescription());
@@ -127,16 +132,19 @@ public class Main{
                 if(actionsList.contains(userWords[0]) && userResponse.contains(desk.getName()) && desk.getEmpty() == false){
                     System.out.println(desk.getDescription());
                     deskPaper.setAccess(true); // allows user to pick up the paper
+
+                    /* if the desk is empty, the desciption updates */
                 } else if(actionsList.contains(userWords[0]) && userResponse.contains(desk.getName()) && desk.getEmpty()){
                     System.out.println(desk.getDescription2());
                 }
 
+                // NEEDS TO ADD A METHOD THAT CHECKS TO SEE IF THE ITEM IS ALREADY IN THE INVENTORY
                 /* Add paper to inventory */
                 if(actionsList.contains(userWords[0]) && userResponse.contains("paper") && deskPaper.getAccess()){
                     System.out.println("This is going to be a method from the person class where they check if its not already in their inventory and then add it to their inventory");
-                    user.getInventory().add("Paper");
+                    user.getInventory().add("Paper"); // adds paper to inventory
                     System.out.println("Putting the piece of paper in pockets...");
-                    desk.setEmpty(true);
+                    desk.setEmpty(true); // removes paper from the desk
                 }
 
                 /* Go through black door to main bathroom */
