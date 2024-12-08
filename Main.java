@@ -35,7 +35,7 @@ public class Main{
         List<String> mbedroomSub = Arrays.asList("window", "desk");
 
         /* Other */
-        Person user = new Person(inventory, mainBedroom);
+        Person user = new Person(inventory, mainBedroom, null);
         
         
 
@@ -94,12 +94,22 @@ public class Main{
             // Inside Main Bedroom:
             if(user.getRoom().getName().equals("Main Bedroom")){
 
-                // IDENTIFY WHICH INDEX THAT MATCHES AND THEN USE IT!!!!! YAYAYAYAYYAYA
-                System.out.println();
-                if(actionsList.contains(userWords[0]) && mbedroomSub.contains(userWords[userWords.length-1])){
-                    System.out.println("still confused");
-                    
+                for(String i:mbedroomSub){ // going through each of the main bedroom sub rooms
+                    for(int j = 0; j < userWords.length; j++){  
+                        
+                        /* Checks to see if the user's response matches any of the subrooms */
+                        if(mbedroomSub.get(mbedroomSub.indexOf(i)).equals(userWords[j])){
+                            System.out.println(i);
+                            //user.setSubRoom(i);
+                        }
+                    }
                 }
+                // IDENTIFY WHICH INDEX THAT MATCHES AND THEN USE IT!!!!! YAYAYAYAYYAYA
+                // System.out.println();
+                // if(actionsList.contains(userWords[0]) && mbedroomSub.contains(userWords[userWords.length-1])){
+                //     System.out.println("still confused");
+                    
+                // }
                 // for(SubRoom i:subRoomsList){
                 //     if(actionsList.contains(userWords[0]) && userResponse.contains(i.getName()) && i.getLocked() == false){
                 //         System.out.println(i.getDescription());
