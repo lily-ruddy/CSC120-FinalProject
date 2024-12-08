@@ -6,13 +6,13 @@ public class Person {
     // Attributes:
     private ArrayList<String> inventory;
     private Room room;
-    private SubRoom subroom;
+    private SubRoom subRoom;
 
     // Constructor:
-    public Person(ArrayList<String> inventory, Room room, SubRoom subroom){
+    public Person(ArrayList<String> inventory, Room room, SubRoom subRoom){
         this.inventory = inventory;
         this.room = room;
-        this.subroom = subroom;
+        this.subRoom = subRoom;
     }
 
     // Accessors:
@@ -25,15 +25,15 @@ public class Person {
     }
 
     public SubRoom getSubRoom(){
-        return this.subroom;
+        return this.subRoom;
     }
 
     public void setRoom(Room room){
         this.room = room;
     }
 
-    public void setSubRoom(SubRoom subroom){
-        this.subroom = subroom;
+    public void setSubRoom(SubRoom subRoom){
+        this.subRoom = subRoom;
     }
 
     // Methods:

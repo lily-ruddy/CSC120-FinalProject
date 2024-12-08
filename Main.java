@@ -28,11 +28,12 @@ public class Main{
         Item deskPaper = new Item("Paper", "A piece of paper found on the desk of the Main Bedroom. 'ESCAPE!' is written on the paper in some special dark purple ink.", false);
         Item toothBrush = new Item("Toothbrush", "It's an orange toothbrush that appears to be unused.", false);
         Item toothPaste = new Item("Toothpaste", "A drugstore brand toothpaste: 6/10 DENTISTS AGREE THAT THIS IS IN FACT TOOTHPASTE", false);
-        
+        //List<Item> mBathroomItem = Arrays.asList(toothBrush, toothPaste);
+
         /* Sub Rooms */ // areas found inside the Rooms
         SubRoom desk = new SubRoom("desk", mainBedroom, "The desk looks pretty standard with no extra compartments. There is a single sheet of blank paper atop the desk, but as you move closer you notice lettering in dark purplpe ink slowly appear: ESCAPE!", "The desk looks pretty standard with no extra compartments.", false, false, deskPaper, null);
         SubRoom window = new SubRoom("window", mainBedroom ,"You move closer to the window and the scenery becomes clearer before you. You realize that you are several thousands of feet above the ground with miles and miles of a snowy landscape as far as the eye can see. ", null, false, true, null, null);
-        List<String> mbedroomSub = Arrays.asList("window", "desk");
+        List<SubRoom> mBedroomSub = Arrays.asList(window, desk);
 
         /* Other */
         Person user = new Person(inventory, mainBedroom, null);
@@ -94,35 +95,26 @@ public class Main{
             // Inside Main Bedroom:
             if(user.getRoom().getName().equals("Main Bedroom")){
 
-                for(String i:mbedroomSub){ // going through each of the main bedroom sub rooms
+                for(int i = 0; i < mBedroomSub.size(); i++){ // going through each of the main bedroom sub rooms
                     for(int j = 0; j < userWords.length; j++){  
                         
                         /* Checks to see if the user's response matches any of the subrooms */
-                        if(mbedroomSub.get(mbedroomSub.indexOf(i)).equals(userWords[j])){
-                            System.out.println(i);
-                            //user.setSubRoom(i);
+                        if(mBedroomSub.get(i).getName().equals(userWords[j])){
+                            
+                            /* Assigns user's subroom as the one that matches their response */
+                            user.setSubRoom(mBedroomSub.get(i));
+                            //System.out.println(user.getSubRoom());
+
+                            /* Brings user to the that particular subroom */
+                            System.out.println(user.getSubRoom().getDescription()); //user.getSubRoom() = sub room
+
+                            /* If there is an object, set access to true */
+                            if(user.getSubRoom().getEmpty() == false){
+                                user.getSubRoom().getItem().setAccess(true); // if there is an item then allow access to it
+                            }
                         }
                     }
                 }
-                // IDENTIFY WHICH INDEX THAT MATCHES AND THEN USE IT!!!!! YAYAYAYAYYAYA
-                // System.out.println();
-                // if(actionsList.contains(userWords[0]) && mbedroomSub.contains(userWords[userWords.length-1])){
-                //     System.out.println("still confused");
-                    
-                // }
-                // for(SubRoom i:subRoomsList){
-                //     if(actionsList.contains(userWords[0]) && userResponse.contains(i.getName()) && i.getLocked() == false){
-                //         System.out.println(i.getDescription());
-
-                //         /* If the subroom has an object, allow access to it */
-                //         if(i.getEmpty() == false && i.getItemList() != null){
-                //             i.getItem().setAccess(true); 
-                //             System.out.println(i.getItem().getName());
-                //             System.out.println(i.getItem().getAccess());
-                //         } 
-                //     }
-                // }
-
                 // /* Pick up object */
                 // for(SubRoom i:subRoomsList){
                 //     if(actionsList.contains(userWords[0]) && userResponse.contains(i.getName())){
@@ -133,20 +125,20 @@ public class Main{
 
 
                 /* Go to window */
-                if(actionsList.contains(userWords[0]) && userResponse.contains(window.getName())){
-                    System.out.println(window.getDescription());
-                }
+                // if(actionsList.contains(userWords[0]) && userResponse.contains(window.getName())){
+                //     System.out.println(window.getDescription());
+                // }
 
 
                 /* Go to desk */
-                if(actionsList.contains(userWords[0]) && userResponse.contains(desk.getName()) && desk.getEmpty() == false){
-                    System.out.println(desk.getDescription());
-                    deskPaper.setAccess(true); // allows user to pick up the paper
+                // if(actionsList.contains(userWords[0]) && userResponse.contains(desk.getName()) && desk.getEmpty() == false){
+                //     System.out.println(desk.getDescription());
+                //     deskPaper.setAccess(true); // allows user to pick up the paper
 
-                    /* if the desk is empty, the desciption updates */
-                } else if(actionsList.contains(userWords[0]) && userResponse.contains(desk.getName()) && desk.getEmpty()){
-                    System.out.println(desk.getDescription2());
-                }
+                //     /* if the desk is empty, the desciption updates */
+                // } else if(actionsList.contains(userWords[0]) && userResponse.contains(desk.getName()) && desk.getEmpty()){
+                //     System.out.println(desk.getDescription2());
+                // }
 
                 // NEEDS TO ADD A METHOD THAT CHECKS TO SEE IF THE ITEM IS ALREADY IN THE INVENTORY
                 /* Add paper to inventory */
@@ -207,6 +199,16 @@ public class Main{
                 }
                 
             }
+
+            // if(user.getSubRoom().getItem() != null){
+            //     /* One item */
+            //     user.getSubRoom().getItem().setAccess(true); // if there is an item then allow access to it
+
+            // } else if(user.getSubRoom().getItemList() != null){
+
+            //     for(Item i:)
+            //     /* Multiple Items */
+            // }
             
 
 

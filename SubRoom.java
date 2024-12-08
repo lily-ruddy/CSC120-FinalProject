@@ -16,6 +16,7 @@ public class SubRoom extends Room{
         this.description2 = description2;
         this.empty = empty;
         this.itemList = itemList;
+        this.item = item;
 
     }
 
