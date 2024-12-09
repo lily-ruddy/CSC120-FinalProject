@@ -105,27 +105,35 @@ public class Main{
                             user.setSubRoom(mBedroomSub.get(i));
                             //System.out.println(user.getSubRoom());
 
-                            /* There's no second desciption meaning there is no objects in the subarea*/
-                            if(user.getSubRoom().getDescription2() == null){
-                                /* Brings user to the that particular subroom */
-                                System.out.println(user.getSubRoom().getDescription()); // gives description
+                            /* Gives description */
+                            // if(user.getSubRoom().getEmpty() == true && user.getSubRoom().getItem() != null){
+                            //     System.out.println(user.getSubRoom().getDescription()); // gives description
+                            // } 
+                            
 
-                                /* If there is an object, set access to true */
+                            /* If there is an object, set access to true */
+                            if(user.getSubRoom().getEmpty() == false){
                                 user.getSubRoom().getItem().setAccess(true); // if there is an item then allow access to it
+                            }
+
+                            /* The sub area doesn't have an item anymore, updates description */
+                            if(user.getSubRoom().getEmpty() == true && user.getSubRoom().getItem() != null){
+                                System.out.println(user.getSubRoom().getDescription2()); // gives description
 
                             } else{
-                                System.out.println(user.getSubRoom().getDescription2()); // gives second description
+                                /* Gives description */
+                                System.out.println(user.getSubRoom().getDescription());
                             }
                         }
                     }
                 }
 
                 //   /* Pick up object */
-                if(actionsList.contains(userWords[0]) && user.getSubRoom().getItem().getAccess() && userResponse.contains(user.getSubRoom().getItem().getName())){
-                    System.out.println("yippee");
-                    user.getInventory().add(user.getSubRoom().getItem().getName()); // adds the item to inventory
-                    user.getSubRoom().setEmpty(true); // sets the sub room to empty
-                }
+                // if(actionsList.contains(userWords[0]) && user.getSubRoom().getItem().getAccess() && userResponse.contains(user.getSubRoom().getItem().getName())){
+                //     System.out.println("yippee");
+                //     user.getInventory().add(user.getSubRoom().getItem().getName()); // adds the item to inventory
+                //     user.getSubRoom().setEmpty(true); // sets the sub room to empty
+                // }
 
                 // /* Pick up object */
                 // for(SubRoom i:subRoomsList){
