@@ -99,17 +99,10 @@ public class Main{
                     for(int j = 0; j < userWords.length; j++){  
                         
                         /* Checks to see if the user's response matches any of the subrooms */
-                        if(mBedroomSub.get(i).getName().equalsIgnoreCase(userWords[j])){
+                        if(mBedroomSub.get(i).getName().equalsIgnoreCase(userWords[j]) && actionsList.contains(userWords[0])){
                             
                             /* Assigns user's subroom as the one that matches their response */
                             user.setSubRoom(mBedroomSub.get(i));
-                            //System.out.println(user.getSubRoom());
-
-                            /* Gives description */
-                            // if(user.getSubRoom().getEmpty() == true && user.getSubRoom().getItem() != null){
-                            //     System.out.println(user.getSubRoom().getDescription()); // gives description
-                            // } 
-                            
 
                             /* If there is an object, set access to true */
                             if(user.getSubRoom().getEmpty() == false){
@@ -129,37 +122,18 @@ public class Main{
                 }
 
                 //   /* Pick up object */
-                // if(actionsList.contains(userWords[0]) && user.getSubRoom().getItem().getAccess() && userResponse.contains(user.getSubRoom().getItem().getName())){
-                //     System.out.println("yippee");
-                //     user.getInventory().add(user.getSubRoom().getItem().getName()); // adds the item to inventory
-                //     user.getSubRoom().setEmpty(true); // sets the sub room to empty
-                // }
+                if(user.getSubRoom() != null){
 
-                // /* Pick up object */
-                // for(SubRoom i:subRoomsList){
-                //     if(actionsList.contains(userWords[0]) && userResponse.contains(i.getName())){
-                //         System.out.println(i.getDescription());
-                        
-                //     }
-                // }
+                    /* There is an item to pick up */
+                    if(user.getSubRoom().getItem() != null){
 
-                /* Go to desk */
-                // if(actionsList.contains(userWords[0]) && userResponse.contains(desk.getName()) && desk.getEmpty() == false){
-                //     System.out.println(desk.getDescription());
-                //     deskPaper.setAccess(true); // allows user to pick up the paper
+                        if(actionsList.contains(userWords[0]) && user.getSubRoom().getItem().getAccess() == true && userResponse.contains(user.getSubRoom().getItem().getName().toLowerCase()) && user.getSubRoom().getEmpty() != true){
+                            System.out.println("yippee");
+                            user.grabItem(user.getSubRoom().getItem()); // adds the item to inventory
+                            user.getSubRoom().setEmpty(true); // sets the sub room to empty
+                        }
 
-                //     /* if the desk is empty, the desciption updates */
-                // } else if(actionsList.contains(userWords[0]) && userResponse.contains(desk.getName()) && desk.getEmpty()){
-                //     System.out.println(desk.getDescription2());
-                // }
-
-                // NEEDS TO ADD A METHOD THAT CHECKS TO SEE IF THE ITEM IS ALREADY IN THE INVENTORY
-                /* Add paper to inventory */
-                if(actionsList.contains(userWords[0]) && userResponse.contains("paper") && deskPaper.getAccess()){
-                    System.out.println("This is going to be a method from the person class where they check if its not already in their inventory and then add it to their inventory");
-                    user.getInventory().add("Paper"); // adds paper to inventory
-                    System.out.println("Putting the piece of paper in pockets...");
-                    desk.setEmpty(true); // removes paper from the desk
+                    }
                 }
 
                 /* Go through black door to main bathroom */

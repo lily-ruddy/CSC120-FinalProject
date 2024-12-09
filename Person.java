@@ -40,7 +40,11 @@ public class Person {
     /* Adds item to the user's inventory */
     public void grabItem(Item item){
         if(this.inventory.contains(item.getName())){
-            System.out.println("This is already ");
+            System.out.println("The " + item.getName().toLowerCase() +" is already in your inventory.");
+
+        } else{
+            System.out.println("Putting " + item.getName().toLowerCase() + " in pockets.");
+            this.getInventory().add(item.getName());
         }
     }
 
