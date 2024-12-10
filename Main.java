@@ -24,6 +24,7 @@ public class Main{
         Room mainBathroom = new Room("Main Bathroom", "Observing the bathroom you see a sleak bathtub, a modest sink and toilet. There's a mirror above the sink. You don't recognize the reflection staring back at you. You are confused. There lays a toothbrush innocently laying besides the sink. ", false);
         Room hallway = new Room("Hallway", "This long hallway has a white door on one end and a pink door on the other. On one side of the wall in order is a green door, an orange door, and a purple door. On the other side are blue, red, and yellow doors. You question why there are no normally painted doors in this tower.", false);
         Room secondBedRoom = new Room("Second Bedroom", "This is a simple bedroom", false);
+        Room library = new Room("Library", "This is a simple library", false);
 
         /* Objects */
         Item deskPaper = new Item("Paper", "A piece of paper found on the desk of the Main Bedroom. 'ESCAPE!' is written on the paper in some special dark purple ink.", false);
@@ -171,7 +172,11 @@ public class Main{
                 }
 
                 /* Grab item */
-                if(actionsList.contains(userWords[0]) && userResponse.contains(toothBrush.getName().toLowerCase()) && toothBrush.getAccess()){
+                if(actionsList.contains(userWords[0]) && userResponse.contains("tooth") && userResponse.contains("brush")&& toothBrush.getAccess()){
+                    System.out.println(toothBrush.getDescription());
+                    user.grabItem(toothBrush);
+                    
+                } else if(actionsList.contains(userWords[0]) && userResponse.contains(toothBrush.getName().toLowerCase()) && toothBrush.getAccess()){
                     System.out.println(toothBrush.getDescription());
                     user.grabItem(toothBrush);
                 }
@@ -213,14 +218,20 @@ public class Main{
                     continue;
                 }
 
+                /* Go through red door */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("red") && userResponse.contains("door")){
+                    System.out.println("As you open up the red door, you notice that you can't see into the room. It's just pitch blackness. As you step into the void, black surrounds you until you realize you stepped into a hallway. You look wildly around until you realize that you came out of the blue door. Weird.");
+                    continue;
+                }
                 
-
-
-
-
-
-
-
+                /* Go through blue door */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("blue") && userResponse.contains("door")){
+                    System.out.println("As you open up the blue door, you notice that you can't see into the room. It's just pitch blackness. As you step into the void, black surrounds you until you realize you stepped into a library.");
+                    user.setRoom(library);
+                    System.out.println("Current location: " +user.getRoom().getName());
+                    System.out.println(library.getDescription());
+                    continue;
+                }
 
             }
 
