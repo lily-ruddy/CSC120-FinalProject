@@ -22,7 +22,8 @@ public class Main{
         /* Rooms */
         Room mainBedroom = new Room("Main Bedroom", "Looking around you notice that the bedroom is very sparse. There's a metal framed bed, a desk with a single candle lighting up the room, and a wooden chair. A large window takes up most of the whole wall. There's two sturdy doors leading out; one that is white and the other is black.", false);
         Room mainBathroom = new Room("Main Bathroom", "Observing the bathroom you see a sleak bathtub, a modest sink and toilet. There's a mirror above the sink. You don't recognize the reflection staring back at you. You are confused. There lays a toothbrush innocently laying besides the sink. ", false);
-        Room hallway = new Room("Hallway", "You step into a long hallway with six doors.", false);
+        Room hallway = new Room("Hallway", "This long hallway has a white door on one end and a pink door on the other. On one side of the wall in order is a green door, an orange door, and a purple door. On the other side are blue, red, and yellow doors. You question why there are no normally painted doors in this tower.", false);
+        Room secondBedRoom = new Room("Second Bedroom", "This is a simple bedroom", false);
 
         /* Objects */
         Item deskPaper = new Item("Paper", "A piece of paper found on the desk of the Main Bedroom. 'ESCAPE!' is written on the paper in some special dark purple ink.", false);
@@ -38,8 +39,6 @@ public class Main{
         /* Other */
         Person user = new Person(inventory, mainBedroom, null);
         
-        
-
         // START OF THE GAME:
         /* Intro to Game */
         System.out.println("************************");
@@ -66,6 +65,7 @@ public class Main{
             /* Gives user their location */
             if(userResponse.equals("location")){
                 System.out.println("Current location: " +user.getRoom().getName()); // gives the current room's description
+                System.out.println(user.getRoom().getDescription());
             }
 
             /* Prints out user's inventory */
@@ -150,7 +150,7 @@ public class Main{
                     System.out.println("Opening white door...");
                     user.setRoom(hallway);
                     System.out.println("Current location: " +user.getRoom().getName());
-                    System.out.println(hallway.getDescription());
+                    System.out.println("You step into a long hallway with seven doors each painted in different colors. Across from you is a pink door. To the left of you in order is a green door, an orange door, and a purple door. To the right of you are blue, red, and yellow doors. You question why there are no normally painted doors in this tower.");
                     continue;
                 }
 
@@ -179,7 +179,66 @@ public class Main{
             }
 
             // Inside Hallway:
-            
+            if(user.getRoom().getName().equals("Hallway")){
+                /* Go through green door */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("green") && userResponse.contains("door")){
+                    System.out.println("As you open up the green door, you notice that you can't see into the room. It's just pitch blackness. As you step into the void, black surrounds you until you realize you stepped into a hallway. You look wildly around until you realize that you came out of the purple door. Weird.");
+                    continue;
+                }
+
+                /* Go through orange door */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("orange") && userResponse.contains("door")){
+                    System.out.println("As you open up the orange door, you notice that you can't see into the room. It's just pitch blackness. As you step into the void, black surrounds you until you realize you stepped into a different bedroom.");
+                    user.setRoom(secondBedRoom);
+                    System.out.println("Current location: " +user.getRoom().getName());
+                    System.out.println(secondBedRoom.getDescription());
+                    continue;
+                }
+
+                /* Go through purple door */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("purple") && userResponse.contains("door")){
+                    System.out.println("As you open up the purple door, you notice that you can't see into the room. It's just pitch blackness. As you step into the void, black surrounds you until you realize you stepped into a hallway. You look wildly around until you realize that you came out of the pink door. Weird.");
+                    continue;
+                }
+
+                /* Go through pink door */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("pink") && userResponse.contains("door")){
+                    System.out.println("As you open up the pink door, you notice that you can't see into the room. It's just pitch blackness. As you step into the void, black surrounds you until you realize you stepped into a hallway. You look wildly around until you realize that you came out of the green door. Weird.");
+                    continue;
+                }
+
+                /* Go through yellow door */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("yellow") && userResponse.contains("door")){
+                    System.out.println("You try to turn the door knob but it won't budge. The yellow door is locked.");
+                    continue;
+                }
+
+                
+
+
+
+
+
+
+
+
+            }
+
+            // Inside Second Bedroom:
+            if(user.getRoom().getName().equals("Second Bedroom")){
+
+                /* Go through black door to main bathroom */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("orange") && userResponse.contains("door")){
+                    System.out.println("Opening orange door...");
+                    user.setRoom(hallway);
+                    System.out.println("Current location: " +user.getRoom().getName());
+                    System.out.println(user.getRoom().getDescription());
+                    continue;
+                }
+                
+
+            }
+
 
             /* Exiting the game */
             if(userResponse.equals("stop")){
