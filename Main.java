@@ -21,18 +21,18 @@ public class Main{
         // Initializing Classes:
         /* Rooms */
         Room mainBedroom = new Room("Main Bedroom", "Looking around you notice that the bedroom is very sparse. There's a metal framed bed, a desk with a single candle lighting up the room, and a wooden chair. A large window takes up most of the whole wall. There's two sturdy doors leading out; one that is white and the other is black.", false);
-        Room mainBathroom = new Room("Main Bathroom", "Observing the bathroom you see a sleak bathtub, a modest sink and toilet. There's a mirror above the sink. You don't recognize the reflection staring back at you. You are confused. There lays a single tube of toothpaste and a toothbrush innocently laying besides the sink. ", false);
+        Room mainBathroom = new Room("Main Bathroom", "Observing the bathroom you see a sleak bathtub, a modest sink and toilet. There's a mirror above the sink. You don't recognize the reflection staring back at you. You are confused. There lays a toothbrush innocently laying besides the sink. ", false);
         Room hallway = new Room("Hallway", "You step into a long hallway with six doors.", false);
 
         /* Objects */
         Item deskPaper = new Item("Paper", "A piece of paper found on the desk of the Main Bedroom. 'ESCAPE!' is written on the paper in some special dark purple ink.", false);
         Item toothBrush = new Item("Toothbrush", "It's an orange toothbrush that appears to be unused.", false);
-        Item toothPaste = new Item("Toothpaste", "A drugstore brand toothpaste: 6/10 DENTISTS AGREE THAT THIS IS IN FACT TOOTHPASTE", false);
+        //Item toothPaste = new Item("Toothpaste", "A drugstore brand toothpaste: 6/10 DENTISTS AGREE THAT THIS IS IN FACT TOOTHPASTE", false);
         //List<Item> mBathroomItem = Arrays.asList(toothBrush, toothPaste);
 
         /* Sub Rooms */ // areas found inside the Rooms
-        SubRoom desk = new SubRoom("desk", mainBedroom, "The desk looks pretty standard with no extra compartments. There is a single sheet of blank paper atop the desk, but as you move closer you notice lettering in dark purplpe ink slowly appear: ESCAPE!", "The desk looks pretty standard with no extra compartments.", false, false, deskPaper, null);
-        SubRoom window = new SubRoom("window", mainBedroom ,"You move closer to the window and the scenery becomes clearer before you. You realize that you are several thousands of feet above the ground with miles and miles of a snowy landscape as far as the eye can see. ", null, false, true, null, null);
+        SubRoom desk = new SubRoom("desk", mainBedroom, "The desk looks pretty standard with no extra compartments. There is a single sheet of blank paper atop the desk, but as you move closer you notice lettering in dark purplpe ink slowly appear: ESCAPE!", "The desk looks pretty standard with no extra compartments.", false, false, deskPaper);
+        SubRoom window = new SubRoom("window", mainBedroom ,"You move closer to the window and the scenery becomes clearer before you. You realize that you are several thousands of feet above the ground with miles and miles of a snowy landscape as far as the eye can see. ", null, false, true, null);
         List<SubRoom> mBedroomSub = Arrays.asList(window, desk);
 
         /* Other */
@@ -158,9 +158,8 @@ public class Main{
 
             // Inside Main Bathroom:
             if(user.getRoom().getName().equals("Main Bathroom")){
-                /* Grants access to toothbrush and toothpaste */
+                /* Grants access to toothbrush */
                 toothBrush.setAccess(true);
-                toothPaste.setAccess(true);
 
                 /* Returning back to main bedroom */
                 if(actionsList.contains(userWords[0]) && userResponse.contains("black") && userResponse.contains("door")){
@@ -171,35 +170,16 @@ public class Main{
                     continue;
                 }
 
-                // I NEED TO HAVE A METHOD THAT CHECKS TO SEE IF I CAN ADD THE ITEM SO I DON"T NEED TO WRITE REPEATING CODE
-                // FUTURE TASK
-                /* Grab items */
-                if(actionsList.contains(userWords[0]) && userResponse.contains("toothbrush") && toothBrush.getAccess()){
-                    user.getInventory().add("Toothbrush");
-                    System.out.println("Putting the toothbrush in pockets...");
-                    
-                }
-
-                if(actionsList.contains(userWords[0]) && userResponse.contains("toothpaste") && toothPaste.getAccess()){
-                    user.getInventory().add("Toothpaste");
-                    System.out.println("Putting the toothpaste in pockets...");
+                /* Grab item */
+                if(actionsList.contains(userWords[0]) && userResponse.contains(toothBrush.getName().toLowerCase()) && toothBrush.getAccess()){
+                    System.out.println(toothBrush.getDescription());
+                    user.grabItem(toothBrush);
                 }
                 
             }
 
-            // if(user.getSubRoom().getItem() != null){
-            //     /* One item */
-            //     user.getSubRoom().getItem().setAccess(true); // if there is an item then allow access to it
-
-            // } else if(user.getSubRoom().getItemList() != null){
-
-            //     for(Item i:)
-            //     /* Multiple Items */
-            // }
+            // Inside Hallway:
             
-
-
-
 
             /* Exiting the game */
             if(userResponse.equals("stop")){
