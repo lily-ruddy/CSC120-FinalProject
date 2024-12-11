@@ -29,8 +29,6 @@ public class Main{
         /* Objects */
         Item deskPaper = new Item("Paper", "A piece of paper found on the desk of the Main Bedroom. 'ESCAPE!' is written on the paper in some special dark purple ink.", false);
         Item toothBrush = new Item("Toothbrush", "It's an orange toothbrush that appears to be unused.", false);
-        //Item toothPaste = new Item("Toothpaste", "A drugstore brand toothpaste: 6/10 DENTISTS AGREE THAT THIS IS IN FACT TOOTHPASTE", false);
-        //List<Item> mBathroomItem = Arrays.asList(toothBrush, toothPaste);
 
         /* Sub Rooms */ // areas found inside the Rooms
         SubRoom desk = new SubRoom("desk", mainBedroom, "The desk looks pretty standard with no extra compartments. There is a single sheet of blank paper atop the desk, but as you move closer you notice lettering in dark purplpe ink slowly appear: ESCAPE!", "The desk looks pretty standard with no extra compartments.", false, false, deskPaper);
@@ -128,7 +126,7 @@ public class Main{
                     }
                 }
 
-                //   /* Pick up object */
+                /* Pick up object */
                 if(user.getSubRoom() != null){
 
                     /* There is an item to pick up */

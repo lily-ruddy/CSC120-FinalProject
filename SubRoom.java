@@ -1,5 +1,3 @@
-//import java.util.List;
-
 public class SubRoom extends Room{
 
     // Attributes:
@@ -7,7 +5,6 @@ public class SubRoom extends Room{
     private Room room; // Room the sub room is in
     private Boolean empty = false; // false means that there are items in the subroom
     private Item item;
-    //private List<Item> itemList; // when there are more than 1 item in the sub room, they will be listed in this list
 
     // Constructor
     public SubRoom(String name, Room room, String description, String description2, boolean locked, boolean empty, Item item){
@@ -15,7 +12,6 @@ public class SubRoom extends Room{
         this.room = room;
         this.description2 = description2;
         this.empty = empty;
-        //this.itemList = itemList;
         this.item = item;
 
     }
@@ -37,16 +33,7 @@ public class SubRoom extends Room{
         return this.item;
     }
 
-    /* if this is null there is only 1 item in the subroom */
-    // public List<Item> getItemList(){
-    //     return this.itemList;
-    // }
-
     public void setEmpty(boolean e){
         this.empty = e;
-    }
-
-
-    
-    
+    }    
 }

@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-// Maybe I don't need this class bc there's only one person
 public class Person {
 
     // Attributes:
@@ -47,16 +46,4 @@ public class Person {
             this.getInventory().add(item.getName());
         }
     }
-
-    /* Removes item from the user's inventory */
-    public void dropItem(Item item){
-
-    }
-
-    /* Uses the item */
-    public void userItem(Item item){
-
-    }
-    
-
 }

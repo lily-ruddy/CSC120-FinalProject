@@ -10,7 +10,6 @@ public class Room {
         this.name = name;
         this.description = description;
         this.locked = locked;
-        //System.out.println("You created a room");
     }
 
     // Accessors:

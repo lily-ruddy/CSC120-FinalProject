@@ -10,7 +10,6 @@ public class Item {
         this.name = name;
         this.description = description;
         this.access = access;
-        //System.out.println("You created an item!");
     }
 
     // Accessors:
