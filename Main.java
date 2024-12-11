@@ -16,7 +16,7 @@ public class Main{
         // Parsing User's Input
         Scanner userInput = new Scanner(System.in); // user's input
         String userResponse = ""; // stores user's response
-        List<String> actionsList = Arrays.asList("look", "look around", "stop", "go", "open", "pick", "grab", "inventory", "location", "map"); // all the possible one word actions that a user can do
+        List<String> actionsList = Arrays.asList("help", "look", "look around", "stop", "go", "open", "pick", "grab", "inventory", "location", "map"); // all the possible one word actions that a user can do
 
         // Initializing Classes:
         /* Rooms */
@@ -49,7 +49,7 @@ public class Main{
         System.out.println("************************");
 
         /* Initializing the game */
-        System.out.println("You open your eyes to an unfamiliar bedroom. You are unsure on what to do. ");
+        System.out.println("You open your eyes to an unfamiliar bedroom. You are unsure on what to do. Maybe asking for help?");
 
         /* Main Game Loop */
         do{
@@ -87,6 +87,12 @@ public class Main{
             if(userResponse.equals("map")){
                 System.out.println("**Confused Noises** \n What is a map?");
             }
+
+            /* Help */
+            if(userResponse.equals("help")){
+                System.out.println("----Helpful Commands---- \n + stop: to stop the game \n + inventory \n + location: gives current room \n + look around \n + go: to move between rooms or approach certain areas \n + grab " );
+            }
+
 
             /* Default response to giving wrong command */
             if(!actionsList.contains(userWords[0])){
