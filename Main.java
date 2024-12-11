@@ -242,7 +242,7 @@ public class Main{
             // Inside Second Bedroom:
             if(user.getRoom().getName().equals("Second Bedroom")){
 
-                /* Go through black door to main bathroom */
+                /* Go through orange door to go back to hallway */
                 if(actionsList.contains(userWords[0]) && userResponse.contains("orange") && userResponse.contains("door")){
                     System.out.println("Opening orange door...");
                     user.setRoom(hallway);
@@ -250,8 +250,19 @@ public class Main{
                     System.out.println(user.getRoom().getDescription());
                     continue;
                 }
-                
+            }
 
+            // Inside Library:
+            if(user.getRoom().getName().equals("Library")){
+
+                /* Go through blue door to go back to hallway */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("blue") && userResponse.contains("door")){
+                    System.out.println("Opening blue door...");
+                    user.setRoom(hallway);
+                    System.out.println("Current location: " +user.getRoom().getName());
+                    System.out.println(user.getRoom().getDescription());
+                    continue;
+                }
             }
 
 
