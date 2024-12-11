@@ -6,14 +6,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Main{
+
+    /**
+     * Runs the ESCAPE THE TOWER game, a text based adventure game. 
+     * @param args The command line arguments (ignored)
+     */
 
     public static void main(String[] args) {
         /* Game Play */
         boolean stillPlaying = true; // let's us know when the loop should end
         ArrayList<String> inventory = new ArrayList<String>(); // inventory of the user
 
-        // Parsing User's Input
+        // Parsing User's Input:
         Scanner userInput = new Scanner(System.in); // user's input
         String userResponse = ""; // stores user's response
         List<String> actionsList = Arrays.asList("help", "look", "look around", "stop", "go", "open", "pick", "grab", "inventory", "location", "map"); // all the possible one word actions that a user can do
@@ -36,7 +42,7 @@ public class Main{
         List<SubRoom> mBedroomSub = Arrays.asList(window, desk);
 
         /* Other */
-        Person user = new Person(inventory, mainBedroom, null);
+        Person user = new Person(inventory, mainBedroom, null); // user's current inventory, location, and sublocation
         
         // START OF THE GAME:
         /* Intro to Game */
@@ -53,7 +59,7 @@ public class Main{
         do{
             /* Parsing user's response */
             userResponse = userInput.nextLine().toLowerCase(); // converts all the actions to lowervase
-            String[] userWords = userResponse.split(" "); // spli
+            String[] userWords = userResponse.split(" "); // splits
         
             // Basic Commands in Every Room:
             /* Gives user their room's description */
@@ -70,10 +76,10 @@ public class Main{
             /* Prints out user's inventory */
             if(userResponse.equals("inventory")){
                 if(inventory.size() == 0){
-                    System.out.println("You reach inside your pockets to find them empty. :(");
+                    System.out.println("You reach inside your pockets to find them empty. :("); // nothing in inventory
                 
                 } else{
-                    System.out.println("----Inventory----");
+                    System.out.println("----Inventory----"); // prints out a list of everything in inventory
                     for(String i:inventory){
                         System.out.print("+ ");
                         System.out.println(i);
@@ -91,17 +97,16 @@ public class Main{
                 System.out.println("----Helpful Commands---- \n + stop: to stop the game \n + inventory \n + location: gives current room \n + look around \n + go: to move between rooms or approach certain areas \n + grab " );
             }
 
-
             /* Default response to giving wrong command */
             if(!actionsList.contains(userWords[0])){
-                System.out.println("Sorry, there's no command for \"" + userResponse + "\". ");
-            } 
+                System.out.println("Sorry, there's no command for \"" + userResponse + "\". "); // doesn't work if user uses the correct action word but doesn't give a valid item/door/sub area
+            }  
 
             // Inside Main Bedroom:
             if(user.getRoom().getName().equals("Main Bedroom")){
 
                 for(int i = 0; i < mBedroomSub.size(); i++){ // going through each of the main bedroom sub rooms
-                    for(int j = 0; j < userWords.length; j++){  
+                    for(int j = 0; j < userWords.length; j++){   
                         
                         /* Checks to see if the user's response matches any of the subrooms */
                         if(mBedroomSub.get(i).getName().equalsIgnoreCase(userWords[j]) && actionsList.contains(userWords[0])){
@@ -133,18 +138,16 @@ public class Main{
                     if(user.getSubRoom().getItem() != null){
 
                         if(actionsList.contains(userWords[0]) && user.getSubRoom().getItem().getAccess() == true && userResponse.contains(user.getSubRoom().getItem().getName().toLowerCase()) && user.getSubRoom().getEmpty() != true){
-                            System.out.println("yippee");
                             user.grabItem(user.getSubRoom().getItem()); // adds the item to inventory
                             user.getSubRoom().setEmpty(true); // sets the sub room to empty
                         }
-
                     }
                 }
 
                 /* Go through black door to main bathroom */
                 if(actionsList.contains(userWords[0]) && userResponse.contains("black") && userResponse.contains("door")){
                     System.out.println("Opening black door...");
-                    user.setRoom(mainBathroom);
+                    user.setRoom(mainBathroom); // changes user's set location
                     System.out.println("Current location: " +user.getRoom().getName());
                     System.out.println(mainBathroom.getDescription());
                     continue;
@@ -153,12 +156,11 @@ public class Main{
                 /* Go through white door to hallway */
                 if(actionsList.contains(userWords[0]) && userResponse.contains("white") && userResponse.contains("door")){
                     System.out.println("Opening white door...");
-                    user.setRoom(hallway);
+                    user.setRoom(hallway); // changes user's set location
                     System.out.println("Current location: " +user.getRoom().getName());
                     System.out.println("You step into a long hallway with seven doors each painted in different colors. Across from you is a pink door. To the left of you in order is a green door, an orange door, and a purple door. To the right of you are blue, red, and yellow doors. You question why there are no normally painted doors in this tower.");
                     continue;
                 }
-
             }
 
             // Inside Main Bathroom:
@@ -169,22 +171,21 @@ public class Main{
                 /* Returning back to main bedroom */
                 if(actionsList.contains(userWords[0]) && userResponse.contains("black") && userResponse.contains("door")){
                     System.out.println("Opening black door...");
-                    user.setRoom(mainBedroom);
+                    user.setRoom(mainBedroom); // changes user's set location
                     System.out.println("Current location: " +user.getRoom().getName());
                     System.out.println(mainBedroom.getDescription());
                     continue;
                 }
 
                 /* Grab item */
-                if(actionsList.contains(userWords[0]) && userResponse.contains("tooth") && userResponse.contains("brush")&& toothBrush.getAccess()){
+                if(actionsList.contains(userWords[0]) && userResponse.contains("tooth") && userResponse.contains("brush")&& toothBrush.getAccess()){ // works if user says tooth brush (two words)
                     System.out.println(toothBrush.getDescription());
-                    user.grabItem(toothBrush);
+                    user.grabItem(toothBrush); // adds item to inventory
                     
-                } else if(actionsList.contains(userWords[0]) && userResponse.contains(toothBrush.getName().toLowerCase()) && toothBrush.getAccess()){
+                } else if(actionsList.contains(userWords[0]) && userResponse.contains(toothBrush.getName().toLowerCase()) && toothBrush.getAccess()){ // works if user says toothbrush (one word)
                     System.out.println(toothBrush.getDescription());
-                    user.grabItem(toothBrush);
+                    user.grabItem(toothBrush); // adds item to inventory
                 }
-                
             }
 
             // Inside Hallway:
@@ -236,7 +237,6 @@ public class Main{
                     System.out.println(library.getDescription());
                     continue;
                 }
-
             }
 
             // Inside Second Bedroom:
@@ -265,7 +265,6 @@ public class Main{
                 }
             }
 
-
             /* Exiting the game */
             if(userResponse.equals("stop")){
                 System.out.println("Leaving Game");
@@ -274,9 +273,5 @@ public class Main{
         } while (stillPlaying);
 
         userInput.close(); // closing scanner
-        
-
-
     }
-
 }

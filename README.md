@@ -16,3 +16,7 @@
  - What was the most helpful **piece of feedback** you received while working on your project? Who gave it to you?
  - If you could go back in time and give your past self some **advice** about this project, what hints would you give?
  - _If you worked with a team:_ please comment on how your **team dynamics** influenced your experience working on this project.
+
+
+- I would try to make the code more efficient and try to get rid of repeating code. I need to work on that with the doors because most of the code is exactly the same except for the door colors
+- 

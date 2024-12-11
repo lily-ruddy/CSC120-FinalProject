@@ -1,6 +1,9 @@
 public class SubRoom extends Room{
 
     // Attributes:
+    /**
+     * 
+     */
     private String description2; // secondary description of the area after the item has been taken
     private Room room; // Room the sub room is in
     private Boolean empty = false; // false means that there are items in the subroom
