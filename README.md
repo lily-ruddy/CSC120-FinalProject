@@ -17,6 +17,12 @@
  - If you could go back in time and give your past self some **advice** about this project, what hints would you give?
  - _If you worked with a team:_ please comment on how your **team dynamics** influenced your experience working on this project.
 
+My overall approach was to get the main gameplay loop up and running and then build off of that. I really wanted to set up a solid foundation where I was able to really easily build upon it. So, I first started working on a Main.java file where I wanted to keep everything organized. Then as I approached certain obstacles I created classes to help solve those problems. 
 
-- I would try to make the code more efficient and try to get rid of repeating code. I need to work on that with the doors because most of the code is exactly the same except for the door colors
-- 
+I've learned a lot about how to put the things we've learned in class and implement it to create a fully functional game. The game is far from done, but being able to weave together all the concepts we've learned in this class is a big achievement. 
+
+Overall I'm pretty happy with the way I coded things. I think there are definite areas of improvement, but I attempted to reduce the amount of repeated code. I tried to make my code more generalized like in the main bedroom. However, I failed to do so in the hallway. For each different colored door I have essentially the same code repeated, which was something I tried to avoid. If I had more time I would definitely make my code more efficient and expand upon the tower. I wanted to implement more of the game play action but didn't have enough time to do so. 
+
+I think the most helpful piece of feedback was to start off with a Room or Person class. I really struggled with starting this final project since it functions so differently compared to the homeworks we've done previously. I think I've been spoiled with the detailed instructions in the homeworks that I was lost on how to begin. Once I started off with creating a Room class I was able to be more productive. 
+
+I think if I was able to go back in time to my past self, I would say don't get caught up in the small details and focus on the big picture. I was pretty disappointed that I was unable to make more progress on the game. I wasn't able to have an ending to my game or have a way to use the items that the user has collected. 
