@@ -32,7 +32,7 @@ public class Main{
         Room library = new Room("Library", "This is a simple library", false);
 
         /* Objects */
-        Item deskPaper = new Item("Paper", "A piece of paper found on the desk of the Main Bedroom. 'ESCAPE!' is written on the paper in some special dark purple ink.", false);
+        Item deskPaper = new Item("Paper", "A piece of paper found on the desk of the Main Bedroom. 'ESCAPE!' is written on the paper in some special dark blue ink.", false);
         Item toothBrush = new Item("Toothbrush", "It's an orange toothbrush that appears to be unused.", false);
 
         /* Sub Rooms */ // areas found inside the Rooms
@@ -236,6 +236,16 @@ public class Main{
                     System.out.println(library.getDescription());
                     continue;
                 }
+
+                /* Go through white door */
+                if(actionsList.contains(userWords[0]) && userResponse.contains("white") && userResponse.contains("door")){
+                    System.out.println("Opening white door");
+                    user.setRoom(mainBedroom);
+                    System.out.println("Current location: " +user.getRoom().getName());
+                    System.out.println(mainBedroom.getDescription());
+                    continue;
+                }
+                
             }
 
             // Inside Second Bedroom:
