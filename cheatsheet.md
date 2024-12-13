@@ -32,3 +32,5 @@ Available Sub Rooms:
 Available Items:
 - Paper: located on the Desk in the Main Bedroom
 - Toothbrus: located in the Main Bathroom
+
+Please see the GeneralFloorplan.jpeg to see the layout. There are some extra things that I didn't yet implement. 
